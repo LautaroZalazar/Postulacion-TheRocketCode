@@ -1,0 +1,10 @@
+
+#Variables de entorno
+.env
+
+# Archivos generados por el sistema operativo y otros archivos no versionados
+node_modules
+package-lock.json
+
+#Archivo de configuración de prettier
+.prettierrc
