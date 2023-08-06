@@ -40,6 +40,8 @@ const FormContainer = () => {
   useEffect(() => {
     if (nameChecked && contactChecked && dateOfBirthChecked) {
       setDisabled(false);
+    } else {
+      setDisabled(true);
     }
   }, [nameChecked, contactChecked, dateOfBirthChecked]);
 
