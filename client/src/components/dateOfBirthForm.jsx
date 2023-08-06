@@ -46,21 +46,6 @@ const DateOfBirthContainer = styled.div`
   width: 80%;
 `;
 
-const NameSpan = styled.span`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  min-height: 2rem;
-  background-color: #f174dc;
-  margin-bottom: 20px;
-  padding: 1rem;
-  border-radius: 3px;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 90%;
-`;
-
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;

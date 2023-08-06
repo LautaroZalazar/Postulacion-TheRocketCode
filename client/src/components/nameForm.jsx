@@ -36,11 +36,6 @@ const NameContainer = styled.div`
   width: 80%;
 `;
 
-const UserImg = styled.img`
-  width: 18%;
-  height: 18%;
-`;
-
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
