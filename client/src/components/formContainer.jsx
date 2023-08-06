@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import ContactForm from "./contactForm";
 import NameForm from "./nameForm";
 import DateOfBirthForm from "./dateOfBirthForm";
 import axios from "axios";
 import ShowSession from "./showSession";
-import styled from "styled-components";
 import userIcon from "../assets/userIcon.png";
+import { ContactSpanContainer, CardContainer, ChatContainer } from "../styles/container";
+import { Button } from "../styles/button";
+import { H1 } from "../styles/title";
+import { ContactSpan, NameSpan } from "../styles/span";
+import { UserImg } from "../styles/image";
+import { Form } from "../styles/form";
 
 const FormContainer = () => {
   const [form, setForm] = useState({
@@ -53,25 +58,25 @@ const FormContainer = () => {
       <H1>Registrate!</H1>
       <CardContainer>
         <Form onSubmit={onSubmit}>
-          <UserInfo>
+          <ChatContainer>
             <UserImg src={userIcon}></UserImg>
             <NameForm form={form} setForm={setForm} />
-          </UserInfo>
+          </ChatContainer>
           {(form.name.firstName || form.name.middleName || form.name.paternalLastName || form.name.maternalLastName) && (
             <NameSpan>
               Nombre:
               {`${form.name.firstName} ${form.name.middleName} ${form.name.paternalLastName} ${form.name.maternalLastName}`}
             </NameSpan>
           )}
-          <UserInfo>
+          <ChatContainer>
             <UserImg src={userIcon}></UserImg>
             <DateOfBirthForm form={form} setForm={setForm} />
-          </UserInfo>
+          </ChatContainer>
           {form.dateOfBirth && <NameSpan>Fecha de nacimiento: {form.dateOfBirth}</NameSpan>}
-          <UserInfo>
+          <ChatContainer>
             <UserImg src={userIcon}></UserImg>
             <ContactForm form={form} setForm={setForm} />
-          </UserInfo>
+          </ChatContainer>
           {(form.contact.email || form.contact.cellphone) && (
             <ContactSpanContainer>
               {form.contact.email && <ContactSpan>Correo electrónico: {form.contact.email}</ContactSpan>}
@@ -87,79 +92,3 @@ const FormContainer = () => {
 };
 
 export default FormContainer;
-
-const UserInfo = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const H1 = styled.h1`
-  text-align: center;
-`;
-
-const ContactSpan = styled.span`
-  width: 100%;
-`;
-
-const ContactSpanContainer = styled.div`
-  display: flex;
-  background-color: #f174dc;
-  margin-bottom: 20px;
-  padding: 1rem;
-  border-radius: 3px;
-  width: 90%;
-  flex-direction: column;
-`;
-
-const NameSpan = styled.span`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  min-height: 2rem;
-  background-color: #f174dc;
-  margin-bottom: 20px;
-  padding: 1rem;
-  border-radius: 3px;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 80%;
-`;
-
-const Button = styled.button`
-  background-color: #f93e83;
-  color: #ffffff;
-  width: 80%;
-  height: 2.75rem;
-  border-radius: 3px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-`;
-
-const UserImg = styled.img`
-  width: 15%;
-  height: 15%;
-  margin-right: 5%;
-`;
-
-const CardContainer = styled.div`
-  background-color: #ffffff;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
-  padding: 32px 42px;
-  margin: 0px auto;
-  @media (min-width: 1280px) {
-    max-width: 40%;
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  margin-right: 10px;
-  margin-top: 10px;
-`;

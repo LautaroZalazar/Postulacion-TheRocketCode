@@ -1,6 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import userIcon from "../assets/userIcon.png";
+import { QuestionTitle } from "../styles/title";
+import { Input } from "../styles/input";
+import { QuestionContainer } from "../styles/container";
+import { InputContainer } from "../styles/container";
 
 const NameForm = ({ form, setForm }) => {
   const onChange = e => {
@@ -14,46 +16,16 @@ const NameForm = ({ form, setForm }) => {
     });
   };
   return (
-    <>
-      <NameContainer>
-        <NameTitle>¿Cuál es tu nombre?</NameTitle>
-        <InputContainer>
-          <Input className="form-control" type="text" name="firstName" placeholder="Nombre" onChange={onChange}></Input>
-          <Input className="form-control" type="text" name="middleName" placeholder="Segundo nombre" onChange={onChange}></Input>
-          <Input className="form-control" type="text" name="paternalLastName" placeholder="Apellido paterno" onChange={onChange}></Input>
-          <Input className="form-control" type="text" name="maternalLastName" placeholder="Apellido materno" onChange={onChange}></Input>
-        </InputContainer>
-      </NameContainer>
-    </>
+    <QuestionContainer>
+      <QuestionTitle>¿Cuál es tu nombre?</QuestionTitle>
+      <InputContainer>
+        <Input className="form-control" type="text" name="firstName" placeholder="Nombre" onChange={onChange}></Input>
+        <Input className="form-control" type="text" name="middleName" placeholder="Segundo nombre" onChange={onChange}></Input>
+        <Input className="form-control" type="text" name="paternalLastName" placeholder="Apellido paterno" onChange={onChange}></Input>
+        <Input className="form-control" type="text" name="maternalLastName" placeholder="Apellido materno" onChange={onChange}></Input>
+      </InputContainer>
+    </QuestionContainer>
   );
 };
 
 export default NameForm;
-
-const NameContainer = styled.div`
-  background-color: #f0f0f0;
-  margin-bottom: 20px;
-  width: 80%;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 0 5px 0;
-`;
-
-const Input = styled.input`
-  width: 90%;
-  height: 2rem;
-  background-color: #f0f0f0;
-  margin: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-  padding: 0px 0px 0px 5px;
-`;
-
-const NameTitle = styled.h4`
-  font-size: bold;
-  padding-left: 0.938rem;
-`;
