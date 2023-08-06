@@ -5,8 +5,11 @@ Como inicializar la aplicación?
 Agregar un .env en la carpeta api con los siguientes datos
 
 DB_HOST =
+
 DB_PASSWORD =
+
 DB_USERNAME =
+
 DB_NAME =
 
 luego npm install y npm start.
