@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ContactForm from "./contactForm";
 import NameForm from "./nameForm";
@@ -28,8 +28,23 @@ const FormContainer = () => {
     },
   });
 
-  const [success, setSuccess] = useState(false);
+  const [date, setDate] = useState({
+    day: "",
+    month: "",
+    year: "",
+  });
 
+  const nameChecked = form.name.firstName && form.name.middleName && form.name.paternalLastName && form.name.maternalLastName ? true : false;
+  const dateOfBirthChecked = date.day && date.month && date.year ? true : false;
+  const contactChecked = form.contact.email && form.contact.cellphone ? true : false;
+  useEffect(() => {
+    if (nameChecked && contactChecked && dateOfBirthChecked) {
+      setDisabled(false);
+    }
+  }, [nameChecked, contactChecked, dateOfBirthChecked]);
+
+  const [success, setSuccess] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const onSubmit = async e => {
     try {
       e.preventDefault();
@@ -68,22 +83,28 @@ const FormContainer = () => {
               {`${form.name.firstName} ${form.name.middleName} ${form.name.paternalLastName} ${form.name.maternalLastName}`}
             </NameSpan>
           )}
-          <ChatContainer>
-            <UserImg src={userIcon}></UserImg>
-            <DateOfBirthForm form={form} setForm={setForm} />
-          </ChatContainer>
+          {nameChecked && (
+            <ChatContainer>
+              <UserImg src={userIcon}></UserImg>
+              <DateOfBirthForm form={form} setForm={setForm} date={date} setDate={setDate} />
+            </ChatContainer>
+          )}
           {form.dateOfBirth && <NameSpan>Fecha de nacimiento: {form.dateOfBirth}</NameSpan>}
-          <ChatContainer>
-            <UserImg src={userIcon}></UserImg>
-            <ContactForm form={form} setForm={setForm} />
-          </ChatContainer>
+          {nameChecked && dateOfBirthChecked && (
+            <ChatContainer>
+              <UserImg src={userIcon}></UserImg>
+              <ContactForm form={form} setForm={setForm} />
+            </ChatContainer>
+          )}
           {(form.contact.email || form.contact.cellphone) && (
             <ContactSpanContainer>
               {form.contact.email && <ContactSpan>Correo electrónico: {form.contact.email}</ContactSpan>}
               {form.contact.cellphone && <ContactSpan> Teléfono: {form.contact.cellphone}</ContactSpan>}
             </ContactSpanContainer>
           )}
-          <Button type="submit">Iniciar</Button>
+          <Button type="submit" disabled={disabled}>
+            Iniciar
+          </Button>
         </Form>
       </CardContainer>
       {success && <ShowSession />}

@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { QuestionTitle } from "../styles/title";
 import { Input } from "../styles/input";
 import { QuestionContainer } from "../styles/container";
 import { InputContainer } from "../styles/container";
 
-const DateOfBirthForm = ({ form, setForm }) => {
-  const [date, setDate] = useState({
-    day: "",
-    month: "",
-    year: "",
-  });
-
+const DateOfBirthForm = ({ form, setForm, date, setDate }) => {
   useEffect(() => {
     if (date.day || date.month || date.year) {
       setForm({

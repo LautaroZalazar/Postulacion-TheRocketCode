@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  background-color: #f93e83;
+  background-color: ${props => (!props.disabled ? "#f93e83" : "#666666")};
   color: #ffffff;
   width: 80%;
   height: 2.75rem;
